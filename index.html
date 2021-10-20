@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="">
+        <div id="app">
+            <div class="grid">
+                <input @keyup.enter="calc" v-model='result' id="vvod" type="text" placeholder="0">
+                <div @click="input(num)" v-for="num in numbers" class="num">{{num}}</div>
+                <div @click="input(op)" v-for="op in operations" class="op">{{op}}</div>
+                <div @click='reset' id="res" class="reset">R</div>
+                <div @click="calc" id="calcu" class="calc">=</div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var app=new Vue({
+            el: '#app',
+            data:{
+                result:'',
+                numbers:[1,2,3,4,5,6,7,8,9,0],
+                operations: ['+','-','*','/']
+            },methods:{
+                input: function (char){
+                    this.result=this.result.toString()
+                    this.result+=char
+                },reset: function (){
+                    this.result=''
+                },calc: function (){
+                    this.result=eval(this.result)
+                }
+            }
+
+
+        })
+    </script>
+</body>
+
+
+<style>
+
+    #vvod{
+        box-sizing: border-box;
+        width: 300px;
+        height: 60px;
+        transition: all 2s;
+        font-size: 50px;
+
+    }
+    .grid{
+        display: flex;
+        flex-wrap: wrap;
+        width: 300px;
+
+    }
+
+    .grid div{
+        box-sizing: border-box;
+        width:150px;
+        height: 50px;
+        background-color: darkslategray;
+        border: 1px solid darkgoldenrod;
+        font-size: 20px;
+        padding: 10px;
+        transition: all 0.5s ease ;
+    }
+
+    .grid :hover{
+        background-color: darkgoldenrod;
+        color: aquamarine;
+        border: 5px solid aquamarine;
+    }
+
+    #calcu{
+        background-color: chocolate;
+    }
+
+    #res{
+        background-color: goldenrod;
+    }
+
+</style>
+</html>
